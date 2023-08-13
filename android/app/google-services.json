@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "41315824406",
+    "project_id": "practical-cie-task",
+    "storage_bucket": "practical-cie-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41315824406:android:58dd3220ac6febccb9d637",
+        "android_client_info": {
+          "package_name": "com.example.practical_cie_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41315824406-hap7s2rlekh4ba8c5kbg0q0vm6k2ta30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgMwdK6wdu69ybPR9prTFyEvTHlWsp2p4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41315824406-hap7s2rlekh4ba8c5kbg0q0vm6k2ta30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
