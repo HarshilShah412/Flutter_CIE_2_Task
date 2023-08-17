@@ -47,8 +47,8 @@ class _MyLoginState extends State<MyLogin> {
         var pref = await SharedPreferences.getInstance();
         pref.setBool("isAdminloggedin", true);
         pref.setString("Name", "Admin");
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => AdminDashbord()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AdminDashbord()));
       }
     } else {
       try {
@@ -72,7 +72,9 @@ class _MyLoginState extends State<MyLogin> {
             pref.setString("Id", doc.id);
             //pref.setString("Name", doc['name']);
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Dashboard(txtuname.text)));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Dashboard(txtuname.text)));
           } else {
             QuickAlert.show(
               context: context,
@@ -180,34 +182,8 @@ class _MyLoginState extends State<MyLogin> {
                   ),
                   ElevatedButton(onPressed: (){
                     _singin();
-                    // setState(() async {
-                    //   uname = txtuname.text.toString();
-                    //   pass = txtpass.text.toString();
-                    //
-                    //   var pref = await SharedPreferences.getInstance();
-                    //   var Email = pref.getString("email");
-                    //   var Pass = pref.getString("Pass");
-                    //
-                    //   print(Email);
-                    //   print(Pass);
-                    //
-                    //   if(uname != null && pass != null && uname == Email && pass == Pass)
-                    //   {
-                    //     _singin();
-                    //     //Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard(uname) ,));
-                    //     clear();
-                    //   }
-                    //   else if(uname == "Admin" && pass == "Admin@123")
-                    //   {
-                    //     Navigator.push(context, MaterialPageRoute(builder: (context) => AdminDashbord() ));
-                    //     clear();
-                    //   }
-                    //   else
-                    //     {
-                    //       clear();
-                    //     }
-                    // });
-                  }, child: Text("SIGN IN"),style: ButtonStyle(
+                        clear();
+                      }, child: Text("SIGN IN"),style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith((states) => Colors.green)
                   )
                   ),

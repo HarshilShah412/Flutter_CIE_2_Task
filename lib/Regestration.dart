@@ -6,12 +6,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:intl/intl.dart';
 
-Future<void>main() async{
+Future<void> main() async {
   runApp(MyReg());
 }
 
-const List<String> City = <String>['Surat', 'Bardoli', 'Ahmadabad', 'Navsari','Vapi'];
-const List<String> Designation = <String>['Project Manager', 'Assistent Manager', 'Sr. Developer', 'Jr. Developer'];
+const List<String> City = <String>[
+  'Surat',
+  'Bardoli',
+  'Ahmadabad',
+  'Navsari',
+  'Vapi',
+  'Valsad'
+];
+const List<String> Designation = <String>[
+  'Project Manager',
+  'Assistent Manager',
+  'Sr. Developer',
+  'Jr. Developer'
+];
 
 class MyReg extends StatefulWidget {
   const MyReg({super.key});
@@ -21,7 +33,6 @@ class MyReg extends StatefulWidget {
 }
 
 class _MyRegState extends State<MyReg> {
-
   final CollectionReference EmployeeDetails = FirebaseFirestore.instance.collection("practical-cie-task");
 
   TextEditingController txtempid = TextEditingController();
@@ -50,8 +61,6 @@ class _MyRegState extends State<MyReg> {
     // pref.setString("Pass", Pass!);
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyLogin(),));
   }
-
-
 
   Future<void> Add() async{
 
@@ -222,7 +231,8 @@ class _MyRegState extends State<MyReg> {
                           firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
                           lastDate: DateTime(2101));
                       if (pickedDate != null) {
-                        String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                        String formattedDate = DateFormat('dd-MM-yyyy').format(
+                            pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
 
                         setState(() {
                           dateController.text =
@@ -288,7 +298,6 @@ class _MyRegState extends State<MyReg> {
                   height: 25,
                 ),
                 ElevatedButton(onPressed: (){
-                  Add();
                   login();
                 }, child: Text("Already Have an Account? Sign In"),style: ButtonStyle(
                     backgroundColor: MaterialStateColor.resolveWith((states) => Colors.green)

@@ -39,9 +39,8 @@ class _DisplayLeaveState extends State<DisplayLeave> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context,
-                MaterialPageRoute(builder: (context) => AdminDashbord()));
-          },
+            Navigator.pop(context);
+            },
           icon: Icon(Icons.logout)
           ),
         ),

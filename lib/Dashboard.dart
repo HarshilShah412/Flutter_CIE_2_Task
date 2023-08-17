@@ -32,26 +32,20 @@ class _DashboardState extends State<Dashboard> {
 
   void Getvaluefrompref() async {
     var pref = await SharedPreferences.getInstance();
-    //print("${widget.uname}");
     setState(() {
       id = pref.getString("Id");
-      //name = pref.getString("Name");
     });
-    // print(id);
   }
 
   void Logout() async {
     var pref = await SharedPreferences.getInstance();
     pref.setBool("isloggedin", false);
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyLogin()));
+    Navigator.pop(context);
   }
 
   final CollectionReference _tblEmployee = FirebaseFirestore.instance.collection('practical-cie-task');
 
   final nameController = TextEditingController();
-  // final StartDateController = TextEditingController();
-  // final EndDateController = TextEditingController();
 
   Future<void> _Delete(String leaveId) async {
     await _tblEmployee.doc(id).collection("Leave").doc(leaveId).delete();
@@ -89,19 +83,21 @@ class _DashboardState extends State<Dashboard> {
                 controller:
                 dateController, //editing controller of this TextField
                 decoration: const InputDecoration(
-                    icon: Icon(Icons.calendar_today), //icon of text field
+                    icon: Icon(Icons.calendar_month), //icon of text field
                     labelText: "Start Date" //label text of field
                 ),
                 readOnly: true, // when true user cannot edit text
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
-                      initialDate: DateTime.now(), //get today's date
+                      initialDate: DateTime.now(),
+                      //get today's date
                       firstDate: DateTime(2000),
+                      //DateTime.now() - not to allow to choose before today.
                       lastDate: DateTime(2101));
                   if (pickedDate != null) {
-                    String formattedDate = DateFormat('yyyy-MM-dd').format(
-                        pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                    String formattedDate =
+                        DateFormat('dd-MM-yyyy').format(pickedDate); //
 
                     setState(() {
                       dateController.text =
@@ -119,7 +115,7 @@ class _DashboardState extends State<Dashboard> {
                 controller:
                 enddateController, //editing controller of this TextField
                 decoration: const InputDecoration(
-                    icon: Icon(Icons.calendar_today), //icon of text field
+                    icon: Icon(Icons.calendar_month), //icon of text field
                     labelText: "End Date" //label text of field
                 ),
                 readOnly: true, // when true user cannot edit text
@@ -127,12 +123,11 @@ class _DashboardState extends State<Dashboard> {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(), //get today's date
-                      firstDate: DateTime(
-                          2000), //DateTime.now() - not to allow to choose before today.
+                      firstDate: DateTime(2000),
                       lastDate: DateTime(2101));
                   if (pickedDate != null) {
-                    String formattedDate = DateFormat('yyyy-MM-dd').format(
-                        pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                    String formattedDate =
+                        DateFormat('dd-MM-yyyy').format(pickedDate);
 
                     setState(() {
                       enddateController.text =
@@ -142,11 +137,7 @@ class _DashboardState extends State<Dashboard> {
                   } else {
                     print("Date is not selected");
                   }
-                  //when click we have to show the datepicker
                 }),
-            SizedBox(
-              height: 25,
-            ),
             ElevatedButton(
                 onPressed: () {
                   if (documentSnapshot == null)
@@ -206,16 +197,15 @@ class _DashboardState extends State<Dashboard> {
           backgroundColor: Colors.black,
           elevation: 0,
           title: Text(
-            name.toString(),
+            '${widget.uname}',
             style: TextStyle(color: Colors.white),
           ),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.logout)
-          ),
-            ),
+              icon: Icon(Icons.logout)),
+        ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
@@ -231,8 +221,6 @@ class _DashboardState extends State<Dashboard> {
 
           builder: (context, AsyncSnapshot<QuerySnapshot> streamsnapshot) {
             if (streamsnapshot.hasData) {
-              // var userid = id;
-              // print("Hello using id" + "'${id}'");
               print(streamsnapshot.data!.docs.length);
               return ListView.builder(
                 itemCount:

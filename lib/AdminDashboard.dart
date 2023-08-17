@@ -36,8 +36,7 @@ class _AdminDashbordState extends State<AdminDashbord> {
   void Logout() async {
     var pref = await SharedPreferences.getInstance();
     pref.setBool("isAdminloggedin", false);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => MyLogin()));
+    Navigator.pop(context);
   }
 
   Future<void> _Update(DocumentSnapshot documentSnapshot) async {
